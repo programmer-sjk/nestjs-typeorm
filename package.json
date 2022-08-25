@@ -1,0 +1,19 @@
+{
+  "name": "nestjs-typeorm",
+  "version": "1.0.0",
+  "description": "+ docker 구성부터 nestjs과 typeorm 모듈을 설치하고 간단한 api 실습과 테스트 코드를 작성",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programmer-sjk/nestjs-typeorm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programmer-sjk/nestjs-typeorm/issues"
+  },
+  "homepage": "https://github.com/programmer-sjk/nestjs-typeorm#readme"
+}

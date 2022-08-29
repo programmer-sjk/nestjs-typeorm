@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'test',
       password: 'test',
       database: 'mysql',
-      entities: [],
+      entities: ['../common/entity/**/*.ts'],
       synchronize: true,
     })
   ],

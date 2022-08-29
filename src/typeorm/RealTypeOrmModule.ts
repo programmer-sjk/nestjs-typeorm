@@ -3,14 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
+  TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'test',
       password: 'test',
       database: 'mysql',
-      entities: ['../common/entity/**/*.ts'],
+      entities: [__dirname + '/../common/entity/**/*.entity.{js,ts}'],
       synchronize: true,
     })
   ],

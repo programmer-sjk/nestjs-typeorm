@@ -9,14 +9,22 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async getUser(): Promise<ResponseEntity<Users[]>> {
-    const users = await this.userService.getUser();
-    return ResponseEntity.OK_WITH(users);
+  async getUser(): Promise<ResponseEntity<Users[] | string>> {
+    try {
+      const users = await this.userService.getUser();
+      return ResponseEntity.OK_WITH(users);
+    } catch (e) {
+      return ResponseEntity.ERROR(e.message)
+    }
   }
 
   @Post()
-  async addUser(@Body() dto: UserAddRequest): Promise<ResponseEntity<string> {
-    await this.userService.addUser(dto);
-    return ResponseEntity.OK();
+  async addUser(@Body() dto: UserAddRequest): Promise<ResponseEntity<string>> {
+    try {
+      await this.userService.addUser(dto);
+      return ResponseEntity.OK();
+    } catch (e) {
+      return ResponseEntity.ERROR(e.message)
+    }
   }
 }

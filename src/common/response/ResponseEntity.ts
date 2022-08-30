@@ -16,7 +16,12 @@ export class ResponseEntity<T> {
     static OK() {
         return new ResponseEntity(200, '', '')        
     }
+
     static OK_WITH(data) {
         return new ResponseEntity(200, '', data)        
+    }
+
+    static ERROR(errMessage: string) {
+        return new ResponseEntity(200, errMessage, '')        
     }
 }

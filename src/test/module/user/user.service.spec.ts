@@ -33,20 +33,16 @@ describe('UserService', () => {
     await moduleRef.close()
   })
 
-  describe('findAll', () => {
-    it('simple test', () => {
-      expect(1).toBe(1);
-    });
-
-    it('simple test2', async () => {
+  describe('users', () => {
+    it('사용자를 추가할 수 있다.', async () => {
       // given
       const userDto = new UserAddRequest('서정국', 33);
-      const user = await userService.addUser(Users.of(userDto))
 
       // when
-      const results = await userService.getUser();
+      await userService.addUser(Users.of(userDto))
 
       // then
+      const results = await userRepository.find();
       expect(results[0].age).toBe(userDto.age)
       expect(results[0].name).toBe(userDto.name)
     });

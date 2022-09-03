@@ -34,6 +34,19 @@ describe('UserService', () => {
   })
 
   describe('users', () => {
+    it('사용자를 조회할 수 있다.', async () => {
+      // given
+      const userDto = new UserAddRequest('서정국', 33);
+      const user = await userRepository.save(Users.of(userDto))
+
+      // when
+      const results = await userService.getUser();
+
+      // then
+      expect(results[0].age).toBe(user.age)
+      expect(results[0].name).toBe(user.name)
+    });
+    
     it('사용자를 추가할 수 있다.', async () => {
       // given
       const userDto = new UserAddRequest('서정국', 33);

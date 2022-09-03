@@ -1,19 +1,19 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './../../../module/user/user.service';
-import { DataSource, getConnection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Users } from './../../../common/entity/User.entity';
-import { getDataSourceName, getDataSourceToken, getRepositoryToken } from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserAddRequest } from './../../../module/user/dto/UserAddRequest';
 import { UserModule } from './../../../module/user/user.module';
 import { RealTypeOrmModule } from './../../../typeorm/RealTypeOrmModule';
-import { ModuleRef } from '@nestjs/core';
 
 describe('UserService', () => {
+  let moduleRef: TestingModule;
   let userService: UserService;
   let userRepository: Repository<Users>
   
   beforeAll(async () => {
-    const moduleRef = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [
         RealTypeOrmModule,
         UserModule
@@ -27,6 +27,10 @@ describe('UserService', () => {
   
   beforeEach(async () => {
     await userRepository.clear();
+  })
+
+  afterAll(async () => {
+    await moduleRef.close()
   })
 
   describe('findAll', () => {

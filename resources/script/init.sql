@@ -1,2 +1,2 @@
 CREATE DATABASE test;
-grant all privileges on test.* to test'%' with grant option;
+grant all privileges on test.* to test@'%' with grant option;

@@ -5,7 +5,7 @@ import { Users } from './../../../common/entity/User.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserAddRequest } from './../../../module/user/dto/UserAddRequest';
 import { UserModule } from './../../../module/user/user.module';
-import { RealTypeOrmModule } from './../../../typeorm/RealTypeOrmModule';
+import { TestTypeOrmModule } from './../../../typeorm/TestTypeOrmModule';
 
 describe('UserService', () => {
   let moduleRef: TestingModule;
@@ -15,7 +15,7 @@ describe('UserService', () => {
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
       imports: [
-        RealTypeOrmModule,
+        TestTypeOrmModule,
         UserModule
       ],
       providers: [],

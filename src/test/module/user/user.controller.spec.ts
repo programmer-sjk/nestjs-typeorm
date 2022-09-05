@@ -41,10 +41,9 @@ describe('UserControler', () => {
     await userRepository.clear();
   })
 
-  // afterAll(async () => {
-  //   console.log(moduleRef)
-  //   await moduleRef.close()
-  // })
+  afterAll(async () => {
+    await app.close()
+  })
 
   describe('users (e2e)', () => {
     it('사용자를 조회할 수 있다.', async () => {

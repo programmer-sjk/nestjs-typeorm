@@ -33,7 +33,7 @@ describe('UserService', () => {
     await moduleRef.close()
   })
 
-  describe('users', () => {
+  describe('users (integration)', () => {
     it('사용자를 조회할 수 있다.', async () => {
       // given
       const userDto = new UserAddRequest('서정국', 33);

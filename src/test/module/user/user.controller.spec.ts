@@ -64,9 +64,17 @@ describe('UserControler', () => {
     
     it('사용자를 추가할 수 있다.', async () => {
       // given
-      const userDto = new UserAddRequest('서정국', 33);
+      const user = new UserAddRequest('서정국', 33);
 
       // when
+      await request(app.getHttpServer())
+        .post('/user')
+        .send(user)
+
+      // then
+      const results = await userRepository.find()
+      expect(results[0].age).toBe(user.age)
+      expect(results[0].name).toBe(user.name)
       
     });
   });

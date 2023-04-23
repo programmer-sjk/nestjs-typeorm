@@ -8,8 +8,8 @@ export class Movie {
   @Column()
   title: string;
 
-  @Column()
-  subTitleLanguage: string;
+  @Column({ type: 'enum', enum: SubTitleLanguage })
+  subTitleLanguage: SubTitleLanguage;
 
   @Column()
   madeBy: string;

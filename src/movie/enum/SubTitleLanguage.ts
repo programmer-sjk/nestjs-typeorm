@@ -1,0 +1,4 @@
+enum SubTitleLanguage {
+  EN,
+  KR,
+}

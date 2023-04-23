@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { SubTitleLanguage } from '../enum/SubTitleLanguage';
 
 @Entity()
 export class Movie {

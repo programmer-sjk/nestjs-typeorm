@@ -1,4 +1,4 @@
-enum SubTitleLanguage {
-  EN,
-  KR,
+export enum SubTitleLanguage {
+  EN = 'EN',
+  KR = 'KR',
 }

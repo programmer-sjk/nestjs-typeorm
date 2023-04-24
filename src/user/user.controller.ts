@@ -1,10 +1,9 @@
-import { Controller, Get, Inject, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  @Inject(UserService)
-  private userService: UserService;
+  constructor(private userService: UserService) {}
 
   @Get()
   findAll(): string {

@@ -8,7 +8,7 @@ export class User {
 
   @Column({ unique: true })
   @IsEmail()
-email: string;
+  email: string;
 
   @Column()
   password: string;
@@ -16,4 +16,10 @@ email: string;
   @Column()
   @MaxLength(30)
   name: string;
+
+  constructor(email: string, password: string, name: string) {
+    this.email = email;
+    this.password = password;
+    this.name = name;
+  }
 }

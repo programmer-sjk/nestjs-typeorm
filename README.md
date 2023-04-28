@@ -6,11 +6,13 @@
   - [x] 자막은 enum으로 처리
   - [x] repository 생성
   - [x] crud 기능 개발
-  - [ ] class tranformer 적용
-  - [ ] dto validation 적용
+  - [x] class tranformer 적용
+  - [x] dto validation 적용
   - [ ] 테스트 코드 작성
 - [ ] 영화에 대한 crud 기능 적용
   - [ ] 테스트 코드 작성
 - [ ] 리뷰 엔티티 정의하고 CURD 기능 개발
   - [ ] 연관관계 맺기
   - [ ] 테스트 코드 작성
+- graphql
+  - [ ] graphql 구성

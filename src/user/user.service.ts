@@ -20,7 +20,6 @@ export class UserService {
   }
 
   async signUp(request: CreateUserDto): Promise<void> {
-    // await this.userRepository.save(request.toEntity()); 
-    await this.userRepository.save(new User('email2', 'password', 'name'));
+    await this.userRepository.save(request.toEntity());
   }
 }

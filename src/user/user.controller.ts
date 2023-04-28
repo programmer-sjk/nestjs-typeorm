@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { User } from './entity/User.entity';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { UserResponse } from './dto/UserReponse';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('user')
 export class UserController {
@@ -20,7 +21,6 @@ export class UserController {
 
   @Post()
   signUp(@Body() request: CreateUserDto): void {
-    console.log(typeof request);
-    this.userService.signUp(request);
+    this.userService.signUp(plainToInstance(CreateUserDto, request));
   }
 }

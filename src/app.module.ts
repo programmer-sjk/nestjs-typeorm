@@ -2,22 +2,10 @@ import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieModule } from './movie/movie.module';
+import { getPgTypeOrmModule } from '../getPgRealOrmModule';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [__dirname + '/**/*.entity.{ts,js}'],
-      synchronize: true,
-    }),
-    UserModule,
-    MovieModule,
-  ],
+  imports: [getPgTypeOrmModule(), UserModule, MovieModule],
   controllers: [],
   providers: [],
 })

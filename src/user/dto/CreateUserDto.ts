@@ -12,6 +12,12 @@ export class CreateUserDto {
   @MaxLength(10)
   private name: string;
 
+  constructor(email: string, password: string, name: string) {
+    this.email = email;
+    this.password = password;
+    this.name = name;
+  }
+
   toEntity(): User {
     return new User(this.email, this.password, this.name);
   }

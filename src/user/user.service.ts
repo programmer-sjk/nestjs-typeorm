@@ -13,8 +13,9 @@ export class UserService {
     return users.map((user) => new UserResponse(user));
   }
 
-  async find(id: number): Promise<User> {
-    return await this.userRepository.findOne(id);
+  async find(id: number): Promise<UserResponse> {
+    const user = await this.userRepository.findOne(id);
+    return new UserResponse(user);
   }
 
   async signUp(request: CreateUserDto): Promise<void> {

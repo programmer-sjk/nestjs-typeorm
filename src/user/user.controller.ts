@@ -14,7 +14,7 @@ export class UserController {
   }
 
   @Get(':id')
-  find(@Param('id') id: number): Promise<User> {
+  find(@Param('id') id: number): Promise<UserResponse> {
     return this.userService.find(id);
   }
 

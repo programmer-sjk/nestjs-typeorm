@@ -7,6 +7,7 @@ import { User } from '../../src/user/entity/User.entity';
 import { CreateUserDto } from '../../src/user/dto/CreateUserDto';
 import { UserModule } from '../../src/user/user.module';
 import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
+import { UserResponse } from '../../src/user/dto/UserReponse';
 
 describe('UserService', () => {
   let moduleRef: TestingModule;
@@ -24,16 +25,11 @@ describe('UserService', () => {
   });
 
   beforeEach(async () => {
-    console.log(userRepository)
     await userRepository.clear();
   });
 
   afterAll(async () => {
     await moduleRef.close();
-  });
-
-  it('service를 불러올 수 있다.', () => {
-    expect(userService).toBeDefined();
   });
 
   it('사용자를 등록할 수 있다.', async () => {
@@ -46,5 +42,36 @@ describe('UserService', () => {
     // then
     const users: User[] = await userRepository.find();
     expect(users.length).toBe(1);
+  });
+
+  it('전체 사용자를 조회할 수 있다.', async () => {
+    // given
+    const expectedUser = await userRepository.save(
+      new User('email@email.com', 'password', 'name'),
+    );
+    await userRepository.save(new User('email2@email.com', 'password', 'name'));
+
+    // when
+    const users = await userService.findAll();
+
+    // then
+    expect(users.length).toBe(2);
+    const result: UserResponse = users[0];
+    expect(result.id).toBe(expectedUser.id);
+    expect(result.email).toBe(expectedUser.email);
+  });
+
+  it('특정 사용자를 조회할 수 있다.', async () => {
+    // given
+    const expectedUser = await userRepository.save(
+      new User('email@email.com', 'password', 'name'),
+    );
+
+    // when
+    const result = await userService.find(expectedUser.id);
+
+    // then
+    expect(result.id).toBe(expectedUser.id);
+    expect(result.email).toBe(expectedUser.email);
   });
 });

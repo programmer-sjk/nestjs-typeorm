@@ -1,18 +1,19 @@
-import { Controller, Delete, Get, Injectable, Patch, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MovieService } from './movie.service';
+import { MovieResponse } from './dto/MovieResponse';
 
 @Controller('movie')
 export class MovieController {
   constructor(private readonly movieService: MovieService) {}
 
   @Get()
-  async findAll(): Promise<void> {
-
+  async findAll(): Promise<MovieResponse[]> {
+    return this.movieService.findAll();
   }
 
-  @Get()
-  async find(): Promise<void> {
-
+  @Get(':id')
+  async find(@Param() id: number): Promise<MovieResponse> {
+    return this.movieService.find(id);
   }
 
   @Post()

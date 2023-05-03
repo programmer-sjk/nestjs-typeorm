@@ -45,7 +45,7 @@ export class MovieController {
     @Param() id: number,
     @Body() request: UpdateMovieScoreRequest,
   ): Promise<void> {
-    await this.movieService.update(id, request);
+    await this.movieService.updateScore(id, request);
   }
 
   @Delete()

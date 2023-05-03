@@ -63,4 +63,10 @@ export class Movie {
     this.filmCompany = filmCompany;
     this.description = description;
   }
+
+  updateScore(rottenScore: number, imDbScore: number, score: number) {
+    this.rottenScore = rottenScore;
+    this.imDbScore = imDbScore;
+    this.score = score;
+  }
 }

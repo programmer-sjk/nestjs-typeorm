@@ -25,22 +25,23 @@ export class MovieService {
     await this.movieRepository.save(request.toEntity());
   }
 
-  async update(id: number, request: UpdateMovieRequest): Promise<void> {
+  async update(id: number, req: UpdateMovieRequest): Promise<void> {
     const movie = await this.findOne(id);
 
     movie.update(
-      request.title,
-      SubTitleLanguage[request.subTitleLanguage],
-      request.madeBy,
-      request.filmCompany,
-      request.description,
+      req.title,
+      SubTitleLanguage[req.subTitleLanguage],
+      req.madeBy,
+      req.filmCompany,
+      req.description,
     );
 
     await this.movieRepository.save(movie);
   }
 
-  async updateScore(id: number, request: UpdateMovieScoreRequest) {
+  async updateScore(id: number, req: UpdateMovieScoreRequest) {
     const movie = await this.findOne(id);
+    movie.updateScore(req.rottenScore, req.imDbScore, req.score);
     await this.movieRepository.save(movie);
   }
 

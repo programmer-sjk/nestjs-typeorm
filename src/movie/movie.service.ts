@@ -5,6 +5,7 @@ import { CreateMovieRequest } from './dto/CreateMovieRequest';
 import { UpdateMovieRequest } from './dto/UpdateMovieRequest';
 import { Movie } from './entity/Movie.entity';
 import { UpdateMovieScoreRequest } from './dto/UpdateMovieScoreRequest';
+import { SubTitleLanguage } from './enum/SubTitleLanguage';
 
 @Injectable()
 export class MovieService {
@@ -24,13 +25,23 @@ export class MovieService {
     await this.movieRepository.save(request.toEntity());
   }
 
-  async update(
-    id: number,
-    request: UpdateMovieRequest | UpdateMovieScoreRequest,
-  ): Promise<void> {
+  async update(id: number, request: UpdateMovieRequest): Promise<void> {
     const movie = await this.findOne(id);
-    const updatedMovie: Movie = request.update(movie);
-    await this.movieRepository.save(updatedMovie);
+
+    movie.update(
+      request.title,
+      SubTitleLanguage[request.subTitleLanguage],
+      request.madeBy,
+      request.filmCompany,
+      request.description,
+    );
+
+    await this.movieRepository.save(movie);
+  }
+
+  async updateScore(id: number, request: UpdateMovieScoreRequest) {
+    const movie = await this.findOne(id);
+    await this.movieRepository.save(movie);
   }
 
   async remove(id: number): Promise<void> {

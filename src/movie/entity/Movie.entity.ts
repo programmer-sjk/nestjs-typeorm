@@ -49,4 +49,18 @@ export class Movie {
     this.score = score;
     this.description = description;
   }
+
+  update(
+    title: string,
+    subTitleLanguage: SubTitleLanguage,
+    madeBy: string,
+    filmCompany: string,
+    description: string,
+  ) {
+    this.title = title;
+    this.subTitleLanguage = subTitleLanguage;
+    this.madeBy = madeBy;
+    this.filmCompany = filmCompany;
+    this.description = description;
+  }
 }

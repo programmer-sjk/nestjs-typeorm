@@ -33,7 +33,11 @@ describe('UserService', () => {
 
   it('사용자를 등록할 수 있다.', async () => {
     // given
-    const request = new CreateUserRequest('email@email.com', 'password', 'name');
+    const request = new CreateUserRequest(
+      'email@email.com',
+      'password',
+      'name',
+    );
 
     // when
     await userService.signUp(request);

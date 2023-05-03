@@ -23,13 +23,13 @@ export class MovieController {
     await this.movieService.register(request);
   }
 
-  // @Patch()
-  // async update(
-  //   @Param() id: number,
-  //   @Body() request: UpdateMovieRequest,
-  // ): Promise<void> {
-  //   await this.movieService.update(id, request);
-  // }
+  @Patch()
+  async update(
+    @Param() id: number,
+    @Body() request: UpdateMovieRequest,
+  ): Promise<void> {
+    await this.movieService.update(id, request);
+  }
 
   @Delete()
   async withDrawal(): Promise<void> {

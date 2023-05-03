@@ -23,11 +23,11 @@ export class MovieService {
     await this.movieRepository.save(request.toEntity());
   }
 
-  // async update(id: number, request: UpdateMovieRequest): Promise<void> {
-  //   const movie = await this.movieRepository.findOne(id);
-  //   const updatedMovie: Movie = request.update(movie);
-  //   await this.movieRepository.save(updatedMovie);
-  // }
+  async update(id: number, request: UpdateMovieRequest): Promise<void> {
+    const movie = await this.movieRepository.findOne(id);
+    const updatedMovie: Movie = request.update(movie);
+    await this.movieRepository.save(updatedMovie);
+  }
 
   async withDrawal(): Promise<void> {
 

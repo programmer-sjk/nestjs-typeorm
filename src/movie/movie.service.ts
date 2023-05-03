@@ -34,7 +34,8 @@ export class MovieService {
   }
 
   async remove(id: number): Promise<void> {
-    await this.movieRepository.remove(id);
+    const movie = await this.findOne(id);
+    await this.movieRepository.remove(movie);
   }
 
   private async findOne(id: number): Promise<Movie> {

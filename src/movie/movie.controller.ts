@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { MovieResponse } from './dto/MovieResponse';
 import { CreateMovieRequest } from './dto/CreateMovieRequest';

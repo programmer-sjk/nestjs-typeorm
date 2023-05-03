@@ -3,6 +3,7 @@ import { MovieService } from './movie.service';
 import { MovieResponse } from './dto/MovieResponse';
 import { CreateMovieRequest } from './dto/CreateMovieRequest';
 import { UpdateMovieRequest } from './dto/UpdateMovieRequest';
+import { UpdateMovieScoreRequest } from './dto/UpdateMovieScoreRequest';
 
 @Controller('movie')
 export class MovieController {
@@ -27,6 +28,14 @@ export class MovieController {
   async update(
     @Param() id: number,
     @Body() request: UpdateMovieRequest,
+  ): Promise<void> {
+    await this.movieService.update(id, request);
+  }
+
+  @Patch()
+  async updateScore(
+    @Param() id: number,
+    @Body() request: UpdateMovieScoreRequest,
   ): Promise<void> {
     await this.movieService.update(id, request);
   }

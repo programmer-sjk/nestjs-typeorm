@@ -29,4 +29,24 @@ export class Movie {
 
   @Column()
   description: string;
+
+  constructor(
+    title: string,
+    subTitleLanguage: string,
+    madeBy: string,
+    filmCompany: string,
+    rottenScore: number,
+    imDbStar: number,
+    star: number,
+    description: string,
+  ) {
+    this.title = title; 
+    this.subTitleLanguage = subTitleLanguage; 
+    this.madeBy = madeBy; 
+    this.filmCompany = filmCompany;
+    this.rottenScore = rottenScore; 
+    this.imDbStar = imDbStar; 
+    this.star = star; 
+    this.description = description; 
+  }
 }

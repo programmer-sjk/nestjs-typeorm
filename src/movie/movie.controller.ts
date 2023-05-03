@@ -41,7 +41,7 @@ export class MovieController {
   }
 
   @Delete()
-  async withDrawal(): Promise<void> {
-    
+  async remove(@Param() id: number): Promise<void> {
+    await this.movieService.remove(id);
   }
 }

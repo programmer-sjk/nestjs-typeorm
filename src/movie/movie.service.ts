@@ -16,7 +16,7 @@ export class MovieService {
   }
 
   async find(id: number): Promise<MovieResponse> {
-    const movie = await this.movieRepository.findOne(id);
+    const movie = await this.findOne(id);
     return new MovieResponse(movie);
   }
 
@@ -28,12 +28,16 @@ export class MovieService {
     id: number,
     request: UpdateMovieRequest | UpdateMovieScoreRequest,
   ): Promise<void> {
-    const movie = await this.movieRepository.findOne(id);
+    const movie = await this.findOne(id);
     const updatedMovie: Movie = request.update(movie);
     await this.movieRepository.save(updatedMovie);
   }
 
-  async withDrawal(): Promise<void> {
+  async remove(id: number): Promise<void> {
+    await this.movieRepository.remove(id);
+  }
 
+  private async findOne(id: number): Promise<Movie> {
+    return await this.movieRepository.findOne(id);
   }
 }

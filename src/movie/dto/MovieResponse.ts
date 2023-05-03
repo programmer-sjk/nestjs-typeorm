@@ -20,8 +20,8 @@ export class MovieResponse {
     this._madeBy = movie.madeBy;
     this._filmCompany = movie.filmCompany;
     this._rottenScore = movie.rottenScore;
-    this._imDbStar = movie.imDbStar;
-    this._star = movie.star;
+    this._imDbStar = movie.imDbScore;
+    this._star = movie.score;
     this._description = movie.description;
   }
 

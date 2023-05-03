@@ -22,31 +22,31 @@ export class Movie {
   rottenScore: number;
 
   @Column('decimal', { precision: 2, scale: 1 })
-  imDbStar: number;
+  imDbScore: number;
 
   @Column('decimal', { precision: 2, scale: 1 })
-  star: number;
+  score: number;
 
   @Column()
   description: string;
 
   constructor(
     title: string,
-    subTitleLanguage: string,
+    subTitleLanguage: SubTitleLanguage,
     madeBy: string,
     filmCompany: string,
     rottenScore: number,
-    imDbStar: number,
-    star: number,
+    imDbScore: number,
+    score: number,
     description: string,
   ) {
-    this.title = title; 
-    this.subTitleLanguage = subTitleLanguage; 
-    this.madeBy = madeBy; 
+    this.title = title;
+    this.subTitleLanguage = subTitleLanguage;
+    this.madeBy = madeBy;
     this.filmCompany = filmCompany;
-    this.rottenScore = rottenScore; 
-    this.imDbStar = imDbStar; 
-    this.star = star; 
-    this.description = description; 
+    this.rottenScore = rottenScore;
+    this.imDbScore = imDbScore;
+    this.score = score;
+    this.description = description;
   }
 }

@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { MovieResponse } from './dto/MovieResponse';
+import { CreateMovieRequest } from './dto/CreateMovieRequest';
+import { UpdateMovieRequest } from './dto/UpdateMovieRequest';
 
 @Controller('movie')
 export class MovieController {
@@ -19,12 +21,15 @@ export class MovieController {
   @Post()
   async register(@Body() request: CreateMovieRequest): Promise<void> {
     await this.movieService.register(request);
-  } 
-
-  @Patch()
-  async update(): Promise<void> {
-
   }
+
+  // @Patch()
+  // async update(
+  //   @Param() id: number,
+  //   @Body() request: UpdateMovieRequest,
+  // ): Promise<void> {
+  //   await this.movieService.update(id, request);
+  // }
 
   @Delete()
   async withDrawal(): Promise<void> {

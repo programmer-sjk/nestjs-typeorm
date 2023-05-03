@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { MovieResponse } from './dto/MovieResponse';
 
@@ -17,9 +17,9 @@ export class MovieController {
   }
 
   @Post()
-  async register(): Promise<void> {
-
-  }
+  async register(@Body() request: CreateMovieRequest): Promise<void> {
+    await this.movieService.register(request);
+  } 
 
   @Patch()
   async update(): Promise<void> {

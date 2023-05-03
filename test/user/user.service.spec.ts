@@ -3,7 +3,7 @@ import { UserService } from '../../src/user/user.service';
 import { UserRepository } from '../../src/user/user.repository';
 import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
-import { CreateUserDto } from '../../src/user/dto/CreateUserDto';
+import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { UserModule } from '../../src/user/user.module';
 import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
 import { UserResponse } from '../../src/user/dto/UserReponse';
@@ -33,7 +33,7 @@ describe('UserService', () => {
 
   it('사용자를 등록할 수 있다.', async () => {
     // given
-    const request = new CreateUserDto('email@email.com', 'password', 'name');
+    const request = new CreateUserRequest('email@email.com', 'password', 'name');
 
     // when
     await userService.signUp(request);

@@ -16,7 +16,7 @@ export class MovieService {
     return new MovieResponse(movie);
   }
 
-  async register(): Promise<void> {
+  async register(request: CreateMovieRequest): Promise<void> {
 
   }
 

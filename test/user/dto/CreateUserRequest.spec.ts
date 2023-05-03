@@ -1,10 +1,10 @@
 import { validate } from 'class-validator';
-import { CreateUserDto } from '../../../src/user/dto/CreateUserDto'
+import { CreateUserRequest } from '../../../src/user/dto/CreateUserRequest'
 
-describe('CreateUserDto', () => {
+describe('CreateUserRequest', () => {
   it('정상적으로 dto를 생성 할 수 있다.', async () => {
     // given
-    const dto = new CreateUserDto('email@email.com', 'password', 'name');
+    const dto = new CreateUserRequest('email@email.com', 'password', 'name');
 
     // when
     const errors = await validate(dto);
@@ -15,7 +15,11 @@ describe('CreateUserDto', () => {
 
   it('이름이 10글자를 초과하면 예외가 발생한다.', async () => {
     // given
-    const dto = new CreateUserDto('email@email.com', 'password', '0123456789!');
+    const dto = new CreateUserRequest(
+      'email@email.com',
+      'password',
+      '0123456789!',
+    );
 
     // when
     const errors = await validate(dto);
@@ -31,7 +35,7 @@ describe('CreateUserDto', () => {
     'email은 공백일 수 없다, input=%s',
     async (input) => {
       // given
-      const dto = new CreateUserDto(input, 'password', 'name');
+      const dto = new CreateUserRequest(input, 'password', 'name');
 
       // when
       const errors = await validate(dto);

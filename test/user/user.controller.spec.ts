@@ -8,7 +8,7 @@ import { UserModule } from '../../src/user/user.module';
 import { UserRepository } from '../../src/user/user.repository';
 import { ClassSerializerInterceptor, HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
-import { CreateUserDto } from '../../src/user/dto/CreateUserDto';
+import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { Reflector } from '@nestjs/core';
 import { UserResponse } from '../../src/user/dto/UserReponse';
 
@@ -46,7 +46,7 @@ describe('UserController', () => {
   it('사용자를 등록할 수 있다', async () => {
     // given
     const expectedEmail = 'email@email.com';
-    const req = new CreateUserDto(expectedEmail, 'password', 'name');
+    const req = new CreateUserRequest(expectedEmail, 'password', 'name');
 
     // when
     await request(app.getHttpServer())

@@ -1,7 +1,7 @@
 import { IsNotEmpty, MaxLength } from 'class-validator';
 import { User } from '../entity/User.entity';
 
-export class CreateUserDto {
+export class CreateUserRequest {
   @IsNotEmpty()
   private email: string;
 

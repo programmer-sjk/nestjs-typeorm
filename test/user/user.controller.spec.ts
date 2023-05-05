@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserController } from '../../src/user/user.controller';
-import { UserService } from '../../src/user/user.service';
 import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
 import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
 import { UserModule } from '../../src/user/user.module';
 import { UserRepository } from '../../src/user/user.repository';
-import { ClassSerializerInterceptor, HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  HttpStatus,
+  INestApplication,
+  ValidationPipe,
+} from '@nestjs/common';
 import * as request from 'supertest';
 import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { Reflector } from '@nestjs/core';

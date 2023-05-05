@@ -26,7 +26,13 @@ export class MovieTestFactory {
   }
 
   static createUpdateMovieRequest(title: string) {
-    return new UpdateMovieRequest(title, 'EN', '영화제작사', '이영화 최고');
+    return new UpdateMovieRequest(
+      title,
+      'EN',
+      '미국',
+      '영화제작사',
+      '이영화 최고',
+    );
   }
 
   static createUpdateMovieScoreRequest(

@@ -56,13 +56,37 @@ describe('MovieService', () => {
 
   it('영화 정보를 수정할 수 있다.', async () => {
     // given
+    const expectedMovieTitle = '먼훗날 우리';
     const movie = await movieRepository.save(MovieTestFactory.create());
-    const request = 
+    const request =
+      MovieTestFactory.createUpdateMovieRequest(expectedMovieTitle);
 
     // when
-    const result = await movieService.update(movie.id);
+    await movieService.update(movie.id, request);
 
     // then
-    expect(result.id).toBe(expectedMovie.id);
+    const result = await movieRepository.findOne(movie.id);
+    expect(result.title).toBe(expectedMovieTitle);
+  });
+
+  it('영화 평점을 수정할 수 있다.', async () => {
+    // given
+    const expectedScore = 1.0;
+    const movie = await movieRepository.save(MovieTestFactory.create());
+    const request = MovieTestFactory.createUpdateMovieScoreRequest(
+      expectedScore,
+      expectedScore,
+      expectedScore,
+    );
+
+    // when
+    await movieService.updateScore(movie.id, request);
+
+    // then
+    const result = await movieRepository.findOne(movie.id);
+    console.log(typeof result.rottenScore)
+    expect(result.rottenScore).toBe(expectedScore);
+    expect(result.imDbScore).toBe(expectedScore);
+    expect(result.score).toBe(expectedScore);
   });
 });

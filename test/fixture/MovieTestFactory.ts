@@ -17,16 +17,15 @@ export class MovieTestFactory {
     );
   }
 
-  static createUpdateMovieRequest() {
-    return new UpdateMovieRequest(
-      '먼훗날우리',
-      'EN',
-      '영화제작사',
-      '이영화 최고',
-    );
+  static createUpdateMovieRequest(title: string) {
+    return new UpdateMovieRequest(title, 'EN', '영화제작사', '이영화 최고');
   }
 
-  static createUpdateMovieScoreRequest() {
-    return new UpdateMovieScoreRequest(5.0, 5.0, 5.0);
+  static createUpdateMovieScoreRequest(
+    rottenScore: number,
+    imDbScore: number,
+    score: number,
+  ) {
+    return new UpdateMovieScoreRequest(rottenScore, imDbScore, score);
   }
 }

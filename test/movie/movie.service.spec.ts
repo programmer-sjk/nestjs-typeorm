@@ -53,4 +53,16 @@ describe('MovieService', () => {
     // then
     expect(result.id).toBe(expectedMovie.id);
   });
+
+  it('영화 정보를 수정할 수 있다.', async () => {
+    // given
+    const movie = await movieRepository.save(MovieTestFactory.create());
+    const request = 
+
+    // when
+    const result = await movieService.update(movie.id);
+
+    // then
+    expect(result.id).toBe(expectedMovie.id);
+  });
 });

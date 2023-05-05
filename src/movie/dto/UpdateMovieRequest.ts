@@ -6,7 +6,7 @@ export class UpdateMovieRequest {
 
   @IsNotEmpty()
   subTitleLanguage: string;
-  
+
   @IsNotEmpty()
   madeBy: string;
 
@@ -15,4 +15,16 @@ export class UpdateMovieRequest {
 
   @IsNotEmpty()
   description: string;
+
+  constructor(
+    title: string,
+    subTitleLanguage: string,
+    filmCompany: string,
+    description: string,
+  ) {
+    this.title = title;
+    this.subTitleLanguage = subTitleLanguage;
+    this.filmCompany = filmCompany;
+    this.description = description;
+  }
 }

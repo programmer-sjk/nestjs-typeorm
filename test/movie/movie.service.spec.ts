@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MovieService } from '../../src/movie/movie.service';
 import { Movie } from '../../src/movie/entity/Movie.entity';
-import { Repository } from 'typeorm';
+import { MustBeEntityError, Repository } from 'typeorm';
 import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
@@ -84,9 +84,27 @@ describe('MovieService', () => {
 
     // then
     const result = await movieRepository.findOne(movie.id);
-    console.log(typeof result.rottenScore)
     expect(result.rottenScore).toBe(expectedScore);
     expect(result.imDbScore).toBe(expectedScore);
     expect(result.score).toBe(expectedScore);
+  });
+
+  it('영화를 삭제할 수 있다.', async () => {
+    // given
+    const movie = await movieRepository.save(MovieTestFactory.create());
+
+    // when
+    await movieService.remove(movie.id);
+
+    // then
+    const result = await movieRepository.findOne(movie.id);
+    expect(result).toBeUndefined();
+  });
+
+  it('삭제하려는 영화가 없다면 예외가 발생한다.', async () => {
+    // when & then
+    await expect(movieService.remove(999)).rejects.toThrowError(
+      MustBeEntityError,
+    );
   });
 });

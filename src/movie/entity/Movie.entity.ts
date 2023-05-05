@@ -19,13 +19,14 @@ export class Movie {
   @Column()
   filmCompany: string;
 
-  @Column()
+  @Column({ default: 0 })
   rottenScore: number;
 
   @Column('decimal', {
     precision: 2,
     scale: 1,
     transformer: new NumericTransformer(),
+    default: 0,
   })
   imDbScore: number;
 
@@ -33,6 +34,7 @@ export class Movie {
     precision: 2,
     scale: 1,
     transformer: new NumericTransformer(),
+    default: 0,
   })
   score: number;
 
@@ -44,18 +46,12 @@ export class Movie {
     subTitleLanguage: SubTitleLanguage,
     madeBy: string,
     filmCompany: string,
-    rottenScore: number,
-    imDbScore: number,
-    score: number,
     description: string,
   ) {
     this.title = title;
     this.subTitleLanguage = subTitleLanguage;
     this.madeBy = madeBy;
     this.filmCompany = filmCompany;
-    this.rottenScore = rottenScore;
-    this.imDbScore = imDbScore;
-    this.score = score;
     this.description = description;
   }
 

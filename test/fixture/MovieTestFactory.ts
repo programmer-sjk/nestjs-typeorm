@@ -1,3 +1,4 @@
+import { CreateMovieRequest } from '../../src/movie/dto/CreateMovieRequest';
 import { UpdateMovieRequest } from '../../src/movie/dto/UpdateMovieRequest';
 import { UpdateMovieScoreRequest } from '../../src/movie/dto/UpdateMovieScoreRequest';
 import { Movie } from '../../src/movie/entity/Movie.entity';
@@ -10,9 +11,16 @@ export class MovieTestFactory {
       SubTitleLanguage.EN,
       'madeBy',
       'fileCompany',
-      5,
-      5,
-      5,
+      'description',
+    );
+  }
+
+  static createRequest(title: string): CreateMovieRequest {
+    return new CreateMovieRequest(
+      title,
+      SubTitleLanguage.EN,
+      'madeBy',
+      'fileCompany',
       'description',
     );
   }

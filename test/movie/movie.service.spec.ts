@@ -54,6 +54,19 @@ describe('MovieService', () => {
     expect(result.id).toBe(expectedMovie.id);
   });
 
+  it('영화를 등록할 수 있다.', async () => {
+    // given
+    const expectedTitle = 'us and them';
+    const request = MovieTestFactory.createRequest(expectedTitle);
+
+    // when
+    await movieService.register(request);
+
+    // then
+    const result = await movieRepository.findOne();
+    expect(result.title).toBe(expectedTitle);
+  });
+
   it('영화 정보를 수정할 수 있다.', async () => {
     // given
     const expectedMovieTitle = '먼훗날 우리';

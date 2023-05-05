@@ -39,4 +39,4 @@ describe('UpdateMovieRequest', () => {
     // then
     expect(errors.length).toBe(0);
   });
-})
+});

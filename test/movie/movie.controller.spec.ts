@@ -45,10 +45,6 @@ describe('MovieController', () => {
     await movieRepository.clear();
   });
 
-  afterAll(async () => {
-    await moduleRef.close();
-  });
-
   it('영화를 등록할 수 있다.', async () => {
     // given
     const expectedTitle = 'us and them';

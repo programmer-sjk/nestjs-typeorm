@@ -26,10 +26,6 @@ describe('MovieService', () => {
     await movieRepository.clear();
   });
 
-  afterAll(async () => {
-    await moduleRef.close();
-  });
-
   it('영화를 등록할 수 있다.', async () => {
     // given
     const expectedTitle = 'us and them';
@@ -42,7 +38,6 @@ describe('MovieService', () => {
     const result = await movieRepository.findOne();
     expect(result.title).toBe(expectedTitle);
   });
-
 
   it('영화를 전체 조회할 수 있다.', async () => {
     // given

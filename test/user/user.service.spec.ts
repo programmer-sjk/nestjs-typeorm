@@ -27,10 +27,6 @@ describe('UserService', () => {
     await userRepository.clear();
   });
 
-  afterAll(async () => {
-    await moduleRef.close();
-  });
-
   it('사용자를 등록할 수 있다.', async () => {
     // given
     const request = new CreateUserRequest(

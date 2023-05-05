@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { SubTitleLanguage } from '../enum/SubTitleLanguage';
+import { NumericTransformer } from '../../common/util/NumericTransformer';
 
 @Entity()
 export class Movie {
@@ -21,10 +22,18 @@ export class Movie {
   @Column()
   rottenScore: number;
 
-  @Column('decimal', { precision: 2, scale: 1 })
+  @Column('decimal', {
+    precision: 2,
+    scale: 1,
+    transformer: new NumericTransformer(),
+  })
   imDbScore: number;
 
-  @Column('decimal', { precision: 2, scale: 1 })
+  @Column('decimal', {
+    precision: 2,
+    scale: 1,
+    transformer: new NumericTransformer(),
+  })
   score: number;
 
   @Column()

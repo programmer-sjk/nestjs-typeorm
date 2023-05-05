@@ -19,11 +19,13 @@ export class UpdateMovieRequest {
   constructor(
     title: string,
     subTitleLanguage: string,
+    madeBy: string,
     filmCompany: string,
     description: string,
   ) {
     this.title = title;
     this.subTitleLanguage = subTitleLanguage;
+    this.madeBy = madeBy;
     this.filmCompany = filmCompany;
     this.description = description;
   }

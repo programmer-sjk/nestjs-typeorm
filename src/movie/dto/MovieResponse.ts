@@ -57,7 +57,7 @@ export class MovieResponse {
 
   @Expose()
   public get imDbStar() {
-    return this.imDbStar;
+    return this._imDbStar;
   }
 
   @Expose()
@@ -67,6 +67,6 @@ export class MovieResponse {
 
   @Expose()
   public get description() {
-    return this.description;
+    return this._description;
   }
 }

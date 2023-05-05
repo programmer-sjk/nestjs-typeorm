@@ -32,7 +32,7 @@ export class MovieController {
     await this.movieService.register(request);
   }
 
-  @Patch()
+  @Patch(':id')
   async update(
     @Param() id: number,
     @Body() request: UpdateMovieRequest,
@@ -40,7 +40,7 @@ export class MovieController {
     await this.movieService.update(id, request);
   }
 
-  @Patch()
+  @Patch(':id/score')
   async updateScore(
     @Param() id: number,
     @Body() request: UpdateMovieScoreRequest,
@@ -48,7 +48,7 @@ export class MovieController {
     await this.movieService.updateScore(id, request);
   }
 
-  @Delete()
+  @Delete(':id')
   async remove(@Param() id: number): Promise<void> {
     await this.movieService.remove(id);
   }

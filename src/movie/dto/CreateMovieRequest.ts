@@ -13,7 +13,7 @@ export class CreateMovieRequest {
   private madeBy: string;
 
   @IsNotEmpty()
-  private fileCompany: string;
+  private filmCompany: string;
 
   private description: string;
 
@@ -21,13 +21,13 @@ export class CreateMovieRequest {
     title: string,
     subTitleLanguage: string,
     madeBy: string,
-    fileCompany: string,
+    filmCompany: string,
     description: string,
   ) {
     this.title = title;
     this.subTitleLanguage = subTitleLanguage;
     this.madeBy = madeBy;
-    this.fileCompany = fileCompany;
+    this.filmCompany = filmCompany;
     this.description = description;
   }
 
@@ -36,7 +36,7 @@ export class CreateMovieRequest {
       this.title,
       SubTitleLanguage[this.subTitleLanguage],
       this.madeBy,
-      this.fileCompany,
+      this.filmCompany,
       this.description,
     );
   }

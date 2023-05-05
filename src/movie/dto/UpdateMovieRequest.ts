@@ -13,7 +13,6 @@ export class UpdateMovieRequest {
   @IsNotEmpty()
   filmCompany: string;
 
-  @IsNotEmpty()
   description: string;
 
   constructor(

@@ -26,7 +26,7 @@ describe('CreateMovieRequest', () => {
     expect(errorProperties).toContain('title');
     expect(errorProperties).toContain('subTitleLanguage');
     expect(errorProperties).toContain('madeBy');
-    expect(errorProperties).toContain('fileCompany');
+    expect(errorProperties).toContain('filmCompany');
   });
 
   it('영화설명은 공백일 수 있다.', async () => {

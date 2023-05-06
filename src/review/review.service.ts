@@ -11,8 +11,10 @@ export class ReviewService {
     private readonly movieRepository: MovieRepository,
   ) {}
 
-  async register(movieId: number, request: CreateReviewRequest): Promise<void> {
-    const movie = await this.movieRepository.findOneOrFail(movieId);
+  async register(request: CreateReviewRequest): Promise<void> {
+    const movie = await this.movieRepository.findOneOrFail(
+      request.getMovieId(),
+    );
     await this.reviewRepository.save(request.toEntity(movie));
   }
 

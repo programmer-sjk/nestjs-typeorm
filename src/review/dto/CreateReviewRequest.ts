@@ -7,7 +7,14 @@ export class CreateReviewRequest {
   @Max(500)
   private content: string;
 
+  @IsNotEmpty()
+  private movieId: number;
+
   toEntity(movie: Movie): Review {
     return new Review(this.content, movie);
+  }
+
+  getMovieId(): number {
+    return this.movieId;
   }
 }

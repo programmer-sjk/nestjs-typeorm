@@ -1,10 +1,10 @@
-import { IsNotEmpty, Max } from 'class-validator';
+import { IsNotEmpty, Max, MaxLength } from 'class-validator';
 import { Review } from '../entity/Review.entity';
 import { Movie } from '../../movie/entity/Movie.entity';
 
 export class CreateReviewRequest {
   @IsNotEmpty()
-  @Max(500)
+  @MaxLength(500)
   private content: string;
 
   @IsNotEmpty()

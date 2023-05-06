@@ -8,17 +8,17 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  findAll(): Promise<UserResponse[]> {
-    return this.userService.findAll();
+  async findAll(): Promise<UserResponse[]> {
+    return await this.userService.findAll();
   }
 
   @Get(':id')
-  find(@Param('id') id: number): Promise<UserResponse> {
-    return this.userService.find(id);
+  async find(@Param('id') id: number): Promise<UserResponse> {
+    return await this.userService.find(id);
   }
 
   @Post()
-  signUp(@Body() request: CreateUserRequest): void {
-    this.userService.signUp(request);
+  async signUp(@Body() request: CreateUserRequest): Promise<void> {
+    await this.userService.signUp(request);
   }
 }

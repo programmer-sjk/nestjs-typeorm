@@ -19,12 +19,12 @@ export class MovieController {
 
   @Get()
   async findAll(): Promise<MovieResponse[]> {
-    return this.movieService.findAll();
+    return await this.movieService.findAll();
   }
 
   @Get(':id')
   async find(@Param() id: number): Promise<MovieResponse> {
-    return this.movieService.find(id);
+    return await this.movieService.find(id);
   }
 
   @Post()

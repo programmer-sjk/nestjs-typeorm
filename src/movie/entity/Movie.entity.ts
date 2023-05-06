@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { SubTitleLanguage } from '../enum/SubTitleLanguage';
 import { NumericTransformer } from '../../common/util/NumericTransformer';
+import { Review } from '../../review/entity/Review.entity';
 
 @Entity()
 export class Movie {
@@ -40,6 +41,9 @@ export class Movie {
 
   @Column()
   description: string;
+
+  @OneToMany(() => Review, (review) => review.movie)
+  reviews: Review[];
 
   constructor(
     title: string,

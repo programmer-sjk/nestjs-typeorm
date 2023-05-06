@@ -68,7 +68,7 @@ describe('UserController', () => {
     const response = await request(app.getHttpServer())
       .get('/user')
       .expect(HttpStatus.OK);
-    
+
     const result = response.body[0];
     // then
     expect(result.id).toBe(expectedUser.id);
@@ -85,7 +85,7 @@ describe('UserController', () => {
     const response = await request(app.getHttpServer())
       .get(`/user/${expectedUser.id}`)
       .expect(HttpStatus.OK);
-    
+
     // then
     const result: UserResponse = response.body;
     expect(result.id).toBe(expectedUser.id);

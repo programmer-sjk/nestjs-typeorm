@@ -10,6 +10,11 @@ export class CreateReviewRequest {
   @IsNotEmpty()
   private movieId: number;
 
+  constructor(content: string, movieId: number) {
+    this.content = content;
+    this.movieId = movieId;
+  }
+
   toEntity(movie: Movie): Review {
     return new Review(this.content, movie);
   }

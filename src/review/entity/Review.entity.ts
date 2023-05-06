@@ -9,7 +9,9 @@ export class Review {
   @Column({ length: 500 })
   content: string;
 
-  @ManyToOne(() => Movie, (movie) => movie.reviews)
+  @ManyToOne(() => Movie, (movie) => movie.reviews, {
+    createForeignKeyConstraints: false,
+  })
   movie: Movie;
 
   constructor(content: string, movie: Movie) {

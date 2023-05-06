@@ -11,4 +11,9 @@ export class Review {
 
   @ManyToOne(() => Movie, (movie) => movie.reviews)
   movie: Movie;
+
+  constructor(content: string, movie: Movie) {
+    this.content = content;
+    this.movie = movie;
+  }
 }

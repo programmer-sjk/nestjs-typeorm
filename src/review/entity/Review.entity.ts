@@ -18,4 +18,9 @@ export class Review {
     this.content = content;
     this.movie = movie;
   }
+
+  updateMovie(movie: Movie) {
+    this.movie = movie;
+    movie.addReview(this);
+  }
 }

@@ -78,4 +78,8 @@ export class Movie {
     this.imDbScore = imDbScore;
     this.score = score;
   }
+
+  addReview(review: Review) {
+    this.reviews.push(review);
+  }
 }

@@ -11,6 +11,6 @@ export function getPgTypeOrmModule() {
     database: 'test',
     entities: [path.join(__dirname, 'src/**/*.entity.{ts,js}')],
     synchronize: true,
+    logging: true,
   });
 }
-

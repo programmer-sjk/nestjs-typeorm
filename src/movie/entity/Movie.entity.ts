@@ -80,6 +80,9 @@ export class Movie {
   }
 
   addReview(review: Review) {
+    if (!this.reviews) {
+      this.reviews = [];
+    }
     this.reviews.push(review);
   }
 }

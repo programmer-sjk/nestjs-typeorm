@@ -16,11 +16,13 @@ export class Review {
 
   constructor(content: string, movie: Movie) {
     this.content = content;
-    this.movie = movie;
+    this.updateMovie(movie);
   }
 
   updateMovie(movie: Movie) {
     this.movie = movie;
-    movie.addReview(this);
+    if (this.movie) {
+      movie.addReview(this);
+    }
   }
 }

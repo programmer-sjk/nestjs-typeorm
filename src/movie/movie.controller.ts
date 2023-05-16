@@ -12,6 +12,7 @@ import { MovieResponse } from './dto/MovieResponse';
 import { CreateMovieRequest } from './dto/CreateMovieRequest';
 import { UpdateMovieRequest } from './dto/UpdateMovieRequest';
 import { UpdateMovieScoreRequest } from './dto/UpdateMovieScoreRequest';
+import { MovieWithReviewResponse } from './dto/MovieWithReviewResponse';
 
 @Controller('movie')
 export class MovieController {
@@ -20,6 +21,11 @@ export class MovieController {
   @Get()
   async findAll(): Promise<MovieResponse[]> {
     return await this.movieService.findAll();
+  }
+
+  @Get('/review')
+  async findAllWithReviews(): Promise<MovieWithReviewResponse[]> {
+    return await this.movieService.findAllWithReviews();
   }
 
   @Get(':id')

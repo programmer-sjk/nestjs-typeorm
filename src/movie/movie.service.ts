@@ -6,6 +6,7 @@ import { UpdateMovieRequest } from './dto/UpdateMovieRequest';
 import { Movie } from './entity/Movie.entity';
 import { UpdateMovieScoreRequest } from './dto/UpdateMovieScoreRequest';
 import { SubTitleLanguage } from './enum/SubTitleLanguage';
+import { MovieWithReviewResponse } from './dto/MovieWithReviewResponse';
 
 @Injectable()
 export class MovieService {
@@ -14,6 +15,12 @@ export class MovieService {
   async findAll(): Promise<MovieResponse[]> {
     const movies = await this.movieRepository.find();
     return movies.map((movie) => new MovieResponse(movie));
+  }
+
+  async findAllWithReviews(): Promise<MovieWithReviewResponse[]> {
+    const movies = await this.movieRepository.findWithReviews();
+    movies.map(movie => console.log(movie.id, movie.reviews))
+    return movies.map((movie) => new MovieWithReviewResponse(movie));
   }
 
   async find(id: number): Promise<MovieResponse> {

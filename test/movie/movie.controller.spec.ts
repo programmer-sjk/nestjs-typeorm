@@ -15,21 +15,26 @@ import { Reflector } from '@nestjs/core';
 import { MovieTestFactory } from '../fixture/MovieTestFactory';
 import * as request from 'supertest';
 import { MovieResponse } from '../../src/movie/dto/MovieResponse';
+import { ReviewRepository } from '../../src/review/review.repository';
+import { ReviewModule } from '../../src/review/review.module';
+import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
 
 describe('MovieController', () => {
   let app: INestApplication;
   let moduleRef: TestingModule;
   let movieService: MovieService;
   let movieRepository: Repository<Movie>;
+  let reviewRepository: ReviewRepository;
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getPgTypeOrmModule(), MovieModule],
-      providers: [MovieService, MovieRepository],
+      imports: [getPgTypeOrmModule(), MovieModule, ReviewModule],
+      providers: [MovieService, MovieRepository, ReviewRepository],
     }).compile();
 
     movieService = moduleRef.get<MovieService>(MovieService);
     movieRepository = moduleRef.get<MovieRepository>(MovieRepository);
+    reviewRepository = moduleRef.get<ReviewRepository>(ReviewRepository);
 
     app = moduleRef.createNestApplication();
 
@@ -43,6 +48,7 @@ describe('MovieController', () => {
 
   beforeEach(async () => {
     await movieRepository.clear();
+    await reviewRepository.clear();
   });
 
   it('영화를 등록할 수 있다.', async () => {
@@ -76,6 +82,31 @@ describe('MovieController', () => {
 
     const result = response.body[0];
     expect(result.id).toBe(expectedMovie.id);
+  });
+
+  it('모든 영화와, 각 영화의 관련된 리뷰를 전체 조회할 수 있다.', async () => {
+    // given
+    const movie = await movieRepository.save(MovieTestFactory.create());
+    const review1 = await reviewRepository.save(
+      ReviewTestFactory.create('히히', movie),
+    );
+    const review2 = await reviewRepository.save(
+      ReviewTestFactory.create('히히', movie),
+    );
+
+    // when
+    const response = await request(app.getHttpServer())
+      .get('/movie/review')
+      .expect(HttpStatus.OK);
+
+    // then
+    const result = response.body[0];
+    expect(result.id).toBe(movie.id);
+
+    const reviews = result.reviews.map((review) => review.id);
+    expect(reviews).toHaveLength(2);
+    expect(reviews).toContain(review1.id);
+    expect(reviews).toContain(review2.id);
   });
 
   it('특정 영화를 조회할 수 있다.', async () => {

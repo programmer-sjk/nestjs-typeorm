@@ -6,24 +6,31 @@ import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
 import { MovieTestFactory } from '../fixture/MovieTestFactory';
+import { Review } from '../../src/review/entity/Review.entity';
+import { ReviewRepository } from '../../src/review/review.repository';
+import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
+import { ReviewModule } from '../../src/review/review.module';
 
 describe('MovieService', () => {
   let moduleRef: TestingModule;
   let movieService: MovieService;
   let movieRepository: Repository<Movie>;
+  let reviewRepository: Repository<Review>;
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getPgTypeOrmModule(), MovieModule],
-      providers: [MovieService, MovieRepository],
+      imports: [getPgTypeOrmModule(), MovieModule, ReviewModule],
+      providers: [MovieService, MovieRepository, ReviewRepository],
     }).compile();
 
     movieService = moduleRef.get<MovieService>(MovieService);
     movieRepository = moduleRef.get<MovieRepository>(MovieRepository);
+    reviewRepository = moduleRef.get<ReviewRepository>(ReviewRepository);
   });
 
   beforeEach(async () => {
     await movieRepository.clear();
+    await reviewRepository.clear();
   });
 
   it('영화를 등록할 수 있다.', async () => {
@@ -50,6 +57,29 @@ describe('MovieService', () => {
     // then
     expect(results).toHaveLength(2);
     expect(results[1].id).toBe(expectedMovie.id);
+  });
+
+  it('모든 영화와, 각 영화의 관련된 리뷰를 전체 조회할 수 있다.', async () => {
+    // given
+    const movie = await movieRepository.save(MovieTestFactory.create());
+    const review1 = await reviewRepository.save(
+      ReviewTestFactory.create('히히', movie),
+    );
+    const review2 = await reviewRepository.save(
+      ReviewTestFactory.create('히히', movie),
+    );
+
+    // when
+    const results = await movieService.findAllWithReviews();
+
+    // then
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toBe(movie.id);
+
+    const reviews = results[0].reviews.map((review) => review.id);
+    expect(reviews).toHaveLength(2);
+    expect(reviews).toContain(review1.id);
+    expect(reviews).toContain(review2.id);
   });
 
   it('특정 영화를 조회할 수 있다.', async () => {

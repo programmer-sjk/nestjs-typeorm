@@ -19,7 +19,6 @@ export class MovieService {
 
   async findAllWithReviews(): Promise<MovieWithReviewResponse[]> {
     const movies = await this.movieRepository.findWithReviews();
-    movies.map(movie => console.log(movie.id, movie.reviews))
     return movies.map((movie) => new MovieWithReviewResponse(movie));
   }
 

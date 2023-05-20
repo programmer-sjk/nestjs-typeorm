@@ -1,14 +1,3 @@
-import { Repository } from 'typeorm';
-import { ReviewService } from '../../src/review/review.service';
-import { Review } from '../../src/review/entity/Review.entity';
-import { Test } from '@nestjs/testing';
-import { getOrmModule } from '../../src/common/getOrmModule';
-import { ReviewModule } from '../../src/review/review.module';
-import { ReviewRepository } from '../../src/review/review.repository';
-import { MovieRepository } from '../../src/movie/movie.repository';
-import { Movie } from '../../src/movie/entity/Movie.entity';
-import { MovieTestFactory } from '../fixture/MovieTestFactory';
-import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
 import {
   ClassSerializerInterceptor,
   HttpStatus,
@@ -16,7 +5,18 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
+import { Repository } from 'typeorm';
+import { Movie } from '../../src/movie/entity/Movie.entity';
+import { MovieRepository } from '../../src/movie/movie.repository';
+import { Review } from '../../src/review/entity/Review.entity';
+import { ReviewModule } from '../../src/review/review.module';
+import { ReviewRepository } from '../../src/review/review.repository';
+import { ReviewService } from '../../src/review/review.service';
+import { getTestOrmModule } from '../common/getTestOrmModule';
+import { MovieTestFactory } from '../fixture/MovieTestFactory';
+import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
 
 describe('ReviewService', () => {
   let app: INestApplication;
@@ -26,7 +26,7 @@ describe('ReviewService', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), ReviewModule],
+      imports: [getTestOrmModule(), ReviewModule],
       providers: [ReviewService, ReviewRepository, MovieRepository],
     }).compile();
 

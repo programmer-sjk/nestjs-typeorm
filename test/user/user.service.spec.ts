@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../../src/user/user.service';
-import { UserRepository } from '../../src/user/user.repository';
 import { Repository } from 'typeorm';
-import { User } from '../../src/user/entity/User.entity';
 import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
-import { UserModule } from '../../src/user/user.module';
-import { getOrmModule } from '../../src/common/getOrmModule';
 import { UserResponse } from '../../src/user/dto/UserReponse';
+import { User } from '../../src/user/entity/User.entity';
+import { UserModule } from '../../src/user/user.module';
+import { UserRepository } from '../../src/user/user.repository';
+import { UserService } from '../../src/user/user.service';
+import { getTestOrmModule } from '../common/getTestOrmModule';
 
 describe('UserService', () => {
   let moduleRef: TestingModule;
@@ -15,7 +15,7 @@ describe('UserService', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), UserModule],
+      imports: [getTestOrmModule(), UserModule],
       providers: [UserService, UserRepository],
     }).compile();
 

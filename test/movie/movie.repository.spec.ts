@@ -1,16 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Movie } from '../../src/movie/entity/Movie.entity';
-import { Repository, createConnection, getRepository } from 'typeorm';
-import { getOrmModule } from '../../src/common/getOrmModule';
+import { Test } from '@nestjs/testing';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
-import { MovieTestFactory } from '../fixture/MovieTestFactory';
-import { Review } from '../../src/review/entity/Review.entity';
-import { ReviewRepository } from '../../src/review/review.repository';
 import { ReviewModule } from '../../src/review/review.module';
+import { ReviewRepository } from '../../src/review/review.repository';
+import { getTestOrmModule } from '../common/getTestOrmModule';
+import { MovieTestFactory } from '../fixture/MovieTestFactory';
 import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import path from 'path';
 
 describe('MovieRepository', () => {
   // let movieRepository: Repository<Movie>; 이런 식으로 하면 custom method 인식하지 못하는 문제가..왜..?
@@ -19,7 +14,7 @@ describe('MovieRepository', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), MovieModule, ReviewModule],
+      imports: [getTestOrmModule(), MovieModule, ReviewModule],
       providers: [MovieRepository, ReviewRepository],
     }).compile();
 

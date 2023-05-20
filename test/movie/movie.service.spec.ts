@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MovieService } from '../../src/movie/movie.service';
-import { Movie } from '../../src/movie/entity/Movie.entity';
 import { MustBeEntityError, Repository } from 'typeorm';
-import { getOrmModule } from '../../src/common/getOrmModule';
+import { Movie } from '../../src/movie/entity/Movie.entity';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
-import { MovieTestFactory } from '../fixture/MovieTestFactory';
+import { MovieService } from '../../src/movie/movie.service';
 import { Review } from '../../src/review/entity/Review.entity';
-import { ReviewRepository } from '../../src/review/review.repository';
-import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
 import { ReviewModule } from '../../src/review/review.module';
+import { ReviewRepository } from '../../src/review/review.repository';
+import { getTestOrmModule } from '../common/getTestOrmModule';
+import { MovieTestFactory } from '../fixture/MovieTestFactory';
+import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
 
 describe('MovieService', () => {
   let moduleRef: TestingModule;
@@ -19,7 +19,7 @@ describe('MovieService', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), MovieModule, ReviewModule],
+      imports: [getTestOrmModule(), MovieModule, ReviewModule],
       providers: [MovieService, MovieRepository, ReviewRepository],
     }).compile();
 

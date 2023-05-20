@@ -1,19 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Repository } from 'typeorm';
-import { User } from '../../src/user/entity/User.entity';
-import { getOrmModule } from '../../src/common/getOrmModule';
-import { UserModule } from '../../src/user/user.module';
-import { UserRepository } from '../../src/user/user.repository';
 import {
   ClassSerializerInterceptor,
   HttpStatus,
   INestApplication,
   ValidationPipe,
 } from '@nestjs/common';
-import * as request from 'supertest';
-import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { Reflector } from '@nestjs/core';
+import { Test, TestingModule } from '@nestjs/testing';
+import * as request from 'supertest';
+import { Repository } from 'typeorm';
+import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { UserResponse } from '../../src/user/dto/UserReponse';
+import { User } from '../../src/user/entity/User.entity';
+import { UserModule } from '../../src/user/user.module';
+import { UserRepository } from '../../src/user/user.repository';
+import { getTestOrmModule } from '../common/getTestOrmModule';
 
 describe('UserController', () => {
   let app: INestApplication;
@@ -22,7 +22,7 @@ describe('UserController', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), UserModule],
+      imports: [getTestOrmModule(), UserModule],
       providers: [UserRepository],
     }).compile();
 

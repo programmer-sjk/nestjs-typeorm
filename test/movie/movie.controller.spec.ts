@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { MovieService } from '../../src/movie/movie.service';
 import { Repository } from 'typeorm';
 import { Movie } from '../../src/movie/entity/Movie.entity';
-import { getOrmModule } from '../../src/common/getOrmModule';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
 import {
@@ -18,21 +17,20 @@ import { MovieResponse } from '../../src/movie/dto/MovieResponse';
 import { ReviewRepository } from '../../src/review/review.repository';
 import { ReviewModule } from '../../src/review/review.module';
 import { ReviewTestFactory } from '../fixture/ReviewTestFactory';
+import { getTestOrmModule } from '../common/getTestOrmModule';
 
 describe('MovieController', () => {
   let app: INestApplication;
   let moduleRef: TestingModule;
-  let movieService: MovieService;
   let movieRepository: Repository<Movie>;
   let reviewRepository: ReviewRepository;
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getOrmModule(), MovieModule, ReviewModule],
+      imports: [getTestOrmModule(), MovieModule, ReviewModule],
       providers: [MovieService, MovieRepository, ReviewRepository],
     }).compile();
 
-    movieService = moduleRef.get<MovieService>(MovieService);
     movieRepository = moduleRef.get<MovieRepository>(MovieRepository);
     reviewRepository = moduleRef.get<ReviewRepository>(ReviewRepository);
 

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
-import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
+import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
 import { UserModule } from '../../src/user/user.module';
 import { UserRepository } from '../../src/user/user.repository';
 import {
@@ -28,12 +28,12 @@ describe('UserController', () => {
 
     userRepository = moduleRef.get<UserRepository>(UserRepository);
     app = moduleRef.createNestApplication();
-    
+
     app.useGlobalInterceptors(
       new ClassSerializerInterceptor(app.get(Reflector)),
     );
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
-    
+
     await app.init();
   });
 

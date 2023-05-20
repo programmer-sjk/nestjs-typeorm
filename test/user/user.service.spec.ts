@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
 import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { UserModule } from '../../src/user/user.module';
-import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
+import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
 import { UserResponse } from '../../src/user/dto/UserReponse';
 
 describe('UserService', () => {

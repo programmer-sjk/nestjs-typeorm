@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { ReviewService } from '../../src/review/review.service';
 import { Review } from '../../src/review/entity/Review.entity';
 import { Test } from '@nestjs/testing';
-import { getPgTypeOrmModule } from '../../getPgRealOrmModule';
+import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
 import { ReviewModule } from '../../src/review/review.module';
 import { ReviewRepository } from '../../src/review/review.repository';
 import { MovieRepository } from '../../src/movie/movie.repository';

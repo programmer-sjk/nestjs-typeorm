@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { MovieModule } from './movie/movie.module';
-import { getPgTypeOrmModule } from './common/orm-module/getPgRealOrmModule';
+import { getOrmModule } from './common/getRealOrmModule';
 import { ReviewModule } from './review/review.module';
 
 @Module({
-  imports: [getPgTypeOrmModule(), UserModule, MovieModule, ReviewModule],
+  imports: [getOrmModule(), UserModule, MovieModule, ReviewModule],
   controllers: [],
   providers: [],
 })

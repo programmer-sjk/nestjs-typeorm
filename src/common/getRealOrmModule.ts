@@ -1,6 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ormConfig } from '../../../getOrmConfig';
+import { ormConfig } from '../../getOrmConfig';
 
-export function getPgTypeOrmModule() {
+export function getOrmModule() {
   return TypeOrmModule.forRoot(ormConfig);
 }

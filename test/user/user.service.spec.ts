@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
 import { CreateUserRequest } from '../../src/user/dto/CreateUserRequest';
 import { UserModule } from '../../src/user/user.module';
-import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
+import { getOrmModule } from '../../src/common/getRealOrmModule';
 import { UserResponse } from '../../src/user/dto/UserReponse';
 
 describe('UserService', () => {
@@ -15,7 +15,7 @@ describe('UserService', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getPgTypeOrmModule(), UserModule],
+      imports: [getOrmModule(), UserModule],
       providers: [UserService, UserRepository],
     }).compile();
 

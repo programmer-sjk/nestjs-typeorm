@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
-import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
+import { getOrmModule } from '../../src/common/getRealOrmModule';
 import { UserModule } from '../../src/user/user.module';
 import { UserRepository } from '../../src/user/user.repository';
 import {
@@ -22,7 +22,7 @@ describe('UserController', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [getPgTypeOrmModule(), UserModule],
+      imports: [getOrmModule(), UserModule],
       providers: [UserRepository],
     }).compile();
 

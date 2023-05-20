@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Movie } from '../../src/movie/entity/Movie.entity';
 import { Repository, createConnection, getRepository } from 'typeorm';
-import { getPgTypeOrmModule } from '../../src/common/orm-module/getPgRealOrmModule';
+import { getOrmModule } from '../../src/common/getRealOrmModule';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
 import { MovieTestFactory } from '../fixture/MovieTestFactory';
@@ -19,7 +19,7 @@ describe('MovieRepository', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [getPgTypeOrmModule(), MovieModule, ReviewModule],
+      imports: [getOrmModule(), MovieModule, ReviewModule],
       providers: [MovieRepository, ReviewRepository],
     }).compile();
 

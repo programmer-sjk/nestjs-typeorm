@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Repository } from 'typeorm';
 import { User } from '../../src/user/entity/User.entity';
-import { getOrmModule } from '../../src/common/getRealOrmModule';
+import { getOrmModule } from '../../src/common/getOrmModule';
 import { UserModule } from '../../src/user/user.module';
 import { UserRepository } from '../../src/user/user.repository';
 import {

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { MovieService } from '../../src/movie/movie.service';
 import { Repository } from 'typeorm';
 import { Movie } from '../../src/movie/entity/Movie.entity';
-import { getOrmModule } from '../../src/common/getRealOrmModule';
+import { getOrmModule } from '../../src/common/getOrmModule';
 import { MovieModule } from '../../src/movie/movie.module';
 import { MovieRepository } from '../../src/movie/movie.repository';
 import {

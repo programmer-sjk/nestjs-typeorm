@@ -7,6 +7,12 @@ export class IsolationController {
 
   @Get()
   async test(): Promise<void> {
-    return await this.isolationService.test();
+    const movieIds = await this.isolationService.getMovieIds();
+
+    console.time('test');
+    for (const id of movieIds) {
+      const movie = await this.isolationService.test(id);
+    }
+    console.timeEnd('test');
   }
 }

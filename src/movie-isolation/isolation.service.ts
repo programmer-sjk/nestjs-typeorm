@@ -8,4 +8,10 @@ export class IsolationService {
   async test(): Promise<void> {
     await this.isolationRepository.find();
   }
+
+  async getMovieIds() {
+    return this.isolationRepository.query(
+      'SELECT idx as id FROM KLMovie ORDER BY RAND() LIMIT 100',
+    );
+  }
 }

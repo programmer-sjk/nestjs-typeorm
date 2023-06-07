@@ -9,6 +9,7 @@ export const ormConfig: TypeOrmModuleOptions = {
   password: 'root',
   database: 'test',
   entities: [path.join(__dirname, './src/**/*.entity.{ts,js}')],
-  synchronize: true,
+  synchronize: false,
+  autoLoadEntities: true,
   logging: true,
 };

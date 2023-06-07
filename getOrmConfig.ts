@@ -12,5 +12,3 @@ export const ormConfig: TypeOrmModuleOptions = {
   synchronize: true,
   logging: true,
 };
-
-console.log(path.join(__dirname, '../../**/*.entity.{ts,js}'))

@@ -6,12 +6,11 @@ import { IsolationLevel, Transactional } from 'typeorm-transactional-cls-hooked'
 export class IsolationService {
   constructor(private readonly isolationRepository: IsolationRepository) {}
 
+  @Transactional({ isolationLevel: IsolationLevel.READ_COMMITTED })
   async test(id: number) {
     return this.isolationRepository.findOne(id);
   }
 
-  @Transactional({ isolationLevel: IsolationLevel.READ_COMMITTED })
-  // @Transactional()
   async getMovieIds() {
     return this.isolationRepository.query(
       'SELECT idx as id FROM KLMovie ORDER BY RAND() LIMIT 100000',

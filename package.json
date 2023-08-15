@@ -29,6 +29,7 @@
     "mysql2": "^3.2.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
+    "ts-jenum": "^2.2.2",
     "typeorm": "0.2.37",
     "typeorm-transactional-cls-hooked": "^0.1.21"
   },
